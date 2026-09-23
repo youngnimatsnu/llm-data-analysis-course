@@ -72,8 +72,8 @@ git --version
 다음과 같이 버전 번호가 표시됩니다.
 
 ```text
-Python 3.x.x
-git version 2.x.x
+Python 3.14.7
+git version 2.55.0.windows.5
 ```
 
 ## 성공 기준
@@ -108,34 +108,41 @@ cd llm-data-analysis-course
 
 Windows PowerShell:
 
-```powershell
-Get-Location
-Get-ChildItem
-```
+PS C:\dev\llm-data-analysis-course> Get-Location
 
-다음 항목들이 보여야 합니다.
+Path
+----
+C:\dev\llm-data-analysis-course
 
-```text
-data
-notebooks
-scripts
-src
-requirements.txt
-README.md
-```
+PS C:\dev\llm-data-analysis-course> Get-ChildItem
 
-## 성공 기준
+    디렉터리: C:\dev\llm-data-analysis-course
 
-- [ ] 현재 폴더가 `llm-data-analysis-course`입니다.
-- [ ] `requirements.txt`, `notebooks`, `scripts`, `data`가 보입니다.
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----        2026-09-21 오전 11:32                .github
+d----        2026-09-21  오후 5:40                .venv
+d----        2026-09-21 오전 11:32                automation
+d----        2026-09-21 오전 11:32                book
+d----        2026-09-21 오전 11:32                dags
+d----        2026-09-22  오후 3:08                data
+d----        2026-09-21 오전 11:32                docs
+d----        2026-09-21 오전 11:32                models
+d----        2026-09-22  오후 3:13                notebooks
+d----        2026-09-21 오전 11:32                practice
+d----        2026-09-21 오전 11:32                prompts
+d----        2026-09-21 오전 11:32                reports
+d----        2026-09-21 오전 11:32                scripts
+d----        2026-09-21 오전 11:32                src
+d----        2026-09-21 오전 11:32                tmp
+-a---        2026-09-21 오전 11:32            473 .env.example
+-a---        2026-09-21 오전 11:32           1159 .gitignore
+-a---        2026-09-21 오전 11:32            969 pyproject.toml
+-a---        2026-09-21 오전 11:32          11014 README.md
+-a---        2026-09-21 오전 11:32            380 requirements.txt
 
-## 오류가 나면
 
-### `destination path ... already exists`
 
-같은 이름의 폴더가 이미 있습니다. 기존 저장소인지 먼저 확인하고 무작정 삭제하지 않습니다.
-
----
 
 # STEP 3. VS Code로 프로젝트 폴더 열기
 
@@ -162,7 +169,7 @@ code .
 - [ ] VS Code에서 저장소 루트 폴더를 열었습니다.
 - [ ] Explorer에서 `notebooks/`, `data/`, `scripts/`를 확인했습니다.
 
----
+모두 확인됨
 
 # STEP 4. `.venv` 가상환경 만들기
 
@@ -194,16 +201,7 @@ python3 -m venv .venv
 
 프로젝트 루트에 `.venv` 폴더가 생성됩니다.
 
-## 성공 기준
-
-- [ ] `.venv` 폴더가 생성되었습니다.
-- [ ] 오류 메시지 없이 명령이 끝났습니다.
-
-## 오류가 나면
-
-Python 설치가 정상인지 STEP 1로 돌아가 확인합니다. 기관·회사 PC에서 파일 생성 권한이 제한된 경우 개인이 임의로 보안 정책을 변경하지 않습니다.
-
----
+생성됨
 
 # STEP 5. 가상환경 활성화하기
 
@@ -231,30 +229,9 @@ source .venv/bin/activate
 
 ```text
 (.venv) PS C:\...\llm-data-analysis-course>
-```
+표시되었음.
 
-## 성공 기준
 
-- [ ] 터미널에 `(.venv)`가 표시됩니다.
-
-## 오류가 나면
-
-PowerShell에서 다음과 같은 오류가 날 수 있습니다.
-
-```text
-running scripts is disabled on this system
-```
-
-개인 학습 PC이고 조직 정책에 위배되지 않는 경우 **현재 PowerShell 세션에서만** 다음을 적용할 수 있습니다.
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
-```
-
-`Process` 범위이므로 PowerShell 창을 닫으면 설정이 끝납니다.
-
----
 
 # STEP 6. 실제 Python 실행 파일 확인하기
 
@@ -283,22 +260,9 @@ Windows 예:
 ```text
 ...\llm-data-analysis-course\.venv\Scripts\python.exe
 ```
+표시됨.
 
-macOS/Linux 예:
 
-```text
-.../llm-data-analysis-course/.venv/bin/python
-```
-
-## 성공 기준
-
-- [ ] 출력 경로에 프로젝트의 `.venv`가 포함됩니다.
-
-## 오류가 나면
-
-다른 Python 경로가 보이면 가상환경이 제대로 활성화되지 않은 것입니다. STEP 5를 다시 확인합니다.
-
----
 
 # STEP 7. pip 업그레이드와 패키지 설치
 
@@ -315,30 +279,9 @@ python -m pip install -r requirements.txt
 
 ## 7-3. 예상 결과
 
-패키지 설치 로그가 진행되고 마지막에 치명적인 오류 없이 끝납니다.
+모두 설치됨.
 
-## 성공 기준
 
-- [ ] `python -m pip`를 사용했습니다.
-- [ ] `requirements.txt` 설치가 완료되었습니다.
-
-## 오류가 나면
-
-### `pip.exe` 실행이 차단되는 경우
-
-조직 PC의 애플리케이션 제어 정책 문제일 수 있습니다. `pip` 단독 명령 대신 먼저 다음 형식을 사용합니다.
-
-```powershell
-python -m pip install -r requirements.txt
-```
-
-그래도 차단되면 조직 정책일 수 있으므로 임의로 보안 설정을 해제하지 않고 관리자에게 확인합니다.
-
-### 패키지 설치 오류가 여러 개 보이는 경우
-
-맨 마지막 줄만 보지 말고 **처음 발생한 오류**부터 확인합니다.
-
----
 
 # STEP 8. VS Code Python 인터프리터를 `.venv`로 선택하기
 
@@ -372,7 +315,7 @@ macOS/Linux:
 ## 성공 기준
 
 - [ ] 프로젝트 `.venv` 인터프리터를 선택했습니다.
-- [ ] 시스템 Python이나 다른 프로젝트 Python을 선택하지 않았습니다.
+
 
 ---
 
@@ -401,28 +344,7 @@ orders.csv
 order_items.csv
 ```
 
-PowerShell에서 확인하려면:
-
-```powershell
-Get-ChildItem data\raw
-```
-
-## 성공 기준
-
-- [ ] `data/raw/customers.csv`가 존재합니다.
-- [ ] 나머지 3개 CSV도 확인했습니다.
-
-## 오류가 나면
-
-현재 위치를 확인합니다.
-
-```powershell
-Get-Location
-```
-
-프로젝트 루트가 아니라면 `scripts/generate_sample_data.py`의 상대 경로가 맞지 않을 수 있습니다.
-
----
+4개 파일 존재함.
 
 # STEP 10. Chapter 02 Notebook 열기
 
@@ -703,19 +625,19 @@ Python 실행 파일: [sys.executable 결과]
 
 Chapter 02 완료 전에 다음을 모두 확인합니다.
 
-- [ ] Public 저장소를 정상적으로 준비했습니다.
-- [ ] 프로젝트 루트에서 VS Code를 열었습니다.
-- [ ] `.venv`를 만들고 활성화했습니다.
-- [ ] `sys.executable`이 `.venv`를 가리킵니다.
-- [ ] `requirements.txt` 설치가 완료되었습니다.
-- [ ] VS Code Python 인터프리터가 `.venv`입니다.
-- [ ] 샘플 CSV 4개가 `data/raw/`에 있습니다.
-- [ ] Chapter 02 Notebook을 열었습니다.
-- [ ] Notebook 커널이 `.venv`입니다.
-- [ ] Notebook의 `sys.executable`에 `.venv`가 포함됩니다.
-- [ ] `DATA_DIR.exists()`가 `True`입니다.
-- [ ] `customers.head()`가 정상 표시됩니다.
-- [ ] `customers.shape`, 컬럼명, `info()`가 출력됩니다.
+- [v ] Public 저장소를 정상적으로 준비했습니다.
+- [ v] 프로젝트 루트에서 VS Code를 열었습니다.
+- [v ] `.venv`를 만들고 활성화했습니다.
+- [ v] `sys.executable`이 `.venv`를 가리킵니다.
+- [ v] `requirements.txt` 설치가 완료되었습니다.
+- [v ] VS Code Python 인터프리터가 `.venv`입니다.
+- [ v] 샘플 CSV 4개가 `data/raw/`에 있습니다.
+- [v ] Chapter 02 Notebook을 열었습니다.
+- [v ] Notebook 커널이 `.venv`입니다.
+- [ v] Notebook의 `sys.executable`에 `.venv`가 포함됩니다.
+- [ v] `DATA_DIR.exists()`가 `True`입니다.
+- [v ] `customers.head()`가 정상 표시됩니다.
+- [ v] `customers.shape`, 컬럼명, `info()`가 출력됩니다.
 - [ ] 실제 Secret을 GitHub에 올리지 않습니다.
 
 ---
@@ -725,13 +647,14 @@ Chapter 02 완료 전에 다음을 모두 확인합니다.
 Chapter 02에서 남겨야 할 완료 Evidence는 다음과 같습니다.
 
 ```text
-1. 터미널의 Python 실행 파일 경로
-2. Notebook의 sys.executable 결과
-3. Notebook의 Path.cwd() 결과
-4. DATA_DIR 존재 여부 True
-5. customers.head() 정상 출력
-6. 데이터 shape와 컬럼 목록
-7. .env가 Git 추적 대상이 아님을 확인
+1. 터미널의 Python 실행 파일 경로: (.venv) PS C:\dev\llm-data-analysis-course> 
+2. Notebook의 sys.executable 결과: image.png
+3. Notebook의 Path.cwd() 결과: image.png
+4. DATA_DIR 존재 여부 True: True
+5. customers.head() 정상 출력: 정상 출력됨
+6. 데이터 shape와 컬럼 목록: 데이터 크기: (150, 6)
+컬럼명: ['customer_id', 'name', 'gender', 'age', 'city', 'signup_date']
+7. .env가 Git 추적 대상이 아님을 확인: gitignore에 포함되어 있음.
 ```
 
 수업 운영자가 화면 제출을 요구한다면 **Notebook에서 환경 확인 결과와 `customers.head()`가 함께 보이는 화면**을 남기면 좋습니다.
